@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.input-area {
+    flex: 1;
+    height: 100px;
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+    font-weight: normal;
+    margin-right: 20px;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+}
+
+.btn {
+    width: 200px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.string {
+    text-align: center;
+    font-size: 24px;
+    max-width: 540px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        height: 220px;
+    }
+
+    .btns {
+        margin-top: 20px;
+        flex-direction: row;
+    }
+
+    .btn+.btn {
+        margin-left: 20px;
+
+    }
+
+}
