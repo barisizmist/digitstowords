@@ -2,6 +2,7 @@ var a = ['', 'bir ', 'iki ', 'üç ', 'dört ', 'beş ', 'altı ', 'yedi ', 'sek
 var b = ['', '', 'yirmi', 'otuz', 'kırk', 'elli', 'atmış', 'yetmiş', 'seksen', 'doksan'];
 
 function inWords(num) {
+    if (num == 0) return 'sıfır';
     if ((num = num.toString()).length > 9) return 'overflow';
     n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
     if (!n) return; var str = '';
@@ -13,6 +14,6 @@ function inWords(num) {
     return str;
 }
 
-document.getElementById('number').onkeyup = function () {
-    document.getElementById('words').innerHTML = inWords(document.getElementById('number').value);
+document.getElementById('input').onkeyup = function () {
+    document.getElementById('str').innerHTML = inWords(document.getElementById('input').value);
 };
