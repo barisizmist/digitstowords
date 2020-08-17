@@ -18,7 +18,7 @@ var YUZE_KADAR = [
 function toWords(number) {
     var words;
     var num = parseInt(number, 10);
-    if (number > 9007199254740992) {
+    if (number > MAKSIMUM) {
         alert('Maksimum değer 9007199254740992\'dir. Lütfen daha küçük bir değer giriniz.');
     }
     else {
@@ -28,15 +28,6 @@ function toWords(number) {
 }
 
 function generateWords(number) {
-    var words;
-    var num = parseInt(number, 10);
-    if (number > 9007199254740992) {
-        alert('Maksimum değer 9007199254740992\'dir. Lütfen daha küçük bir değer giriniz.');
-    }
-    else {
-        words = generateWords(num);
-        return words;
-    }
     var remainder, word,
         words = arguments[1];
 
