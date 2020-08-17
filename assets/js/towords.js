@@ -89,23 +89,45 @@ function generateWords(number) {
 
 //Rakam kontrolü
 var input = document.getElementById("input");
-input.onkeypress = function (evt) {
-    var theEvent = evt || window.event;
+// input.onkeypress = function (evt) {
+//     var theEvent = evt || window.event;
 
-    // Handle paste
-    if (theEvent.type === 'paste') {
-        key = event.clipboardData.getData('text/plain');
-    } else {
-        // Handle key press
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-    }
-    var regex = /^[0-9]+$/;
-    if (!regex.test(key)) {
-        theEvent.returnValue = false;
-        if (theEvent.preventDefault) theEvent.preventDefault();
-    }
+//     // Handle paste
+//     if (theEvent.type === 'paste') {
+//         key = event.clipboardData.getData('text/plain');
+//     } else {
+//         // Handle key press
+//         var key = theEvent.keyCode || theEvent.which;
+//         key = String.fromCharCode(key);
+//     }
+//     var regex = /^[0-9]+$/;
+//     if (!regex.test(key)) {
+//         theEvent.returnValue = false;
+//         if (theEvent.preventDefault) theEvent.preventDefault();
+//     }
+// }
+
+// Restricts input for the given textbox to the given inputFilter function.
+function setInputFilter(textbox, inputFilter) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+        textbox.addEventListener(event, function () {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                this.value = "";
+            }
+        });
+    });
 }
+
+setInputFilter(document.getElementById("input"), function (value) {
+    return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+});
 
 //Butona tıklama sonrası
 var btnWrite = document.getElementsByClassName('btn-write')[0];
